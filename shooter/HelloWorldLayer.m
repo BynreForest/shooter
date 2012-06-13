@@ -44,8 +44,9 @@
         [self schedule:@selector(gameLogic:) interval:1.0];
         
         self.isTouchEnabled = YES;
-
-	}
+        
+        }
+    
 	return self;
 }
 
