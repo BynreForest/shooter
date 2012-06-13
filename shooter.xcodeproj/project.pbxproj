@@ -122,6 +122,9 @@
 		D7E1470F1588CE7E00FE226A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E1470E1588CE7E00FE226A /* AppDelegate.m */; };
 		D7E147121588CE7E00FE226A /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E147111588CE7E00FE226A /* RootViewController.m */; };
 		D7E147151588CE7E00FE226A /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E147141588CE7E00FE226A /* HelloWorldLayer.m */; };
+		D7E147201588E0DE00FE226A /* Player.png in Resources */ = {isa = PBXBuildFile; fileRef = D7E1471D1588E0DE00FE226A /* Player.png */; };
+		D7E147211588E0DE00FE226A /* Projectile.png in Resources */ = {isa = PBXBuildFile; fileRef = D7E1471E1588E0DE00FE226A /* Projectile.png */; };
+		D7E147221588E0DE00FE226A /* Target.png in Resources */ = {isa = PBXBuildFile; fileRef = D7E1471F1588E0DE00FE226A /* Target.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -360,6 +363,9 @@
 		D7E147131588CE7E00FE226A /* HelloWorldLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloWorldLayer.h; sourceTree = "<group>"; };
 		D7E147141588CE7E00FE226A /* HelloWorldLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
 		D7E147161588CE7E00FE226A /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
+		D7E1471D1588E0DE00FE226A /* Player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Player.png; sourceTree = "<group>"; };
+		D7E1471E1588E0DE00FE226A /* Projectile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Projectile.png; sourceTree = "<group>"; };
+		D7E1471F1588E0DE00FE226A /* Target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Target.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -416,6 +422,7 @@
 		D7E145BB1588CE7B00FE226A /* shooter */ = {
 			isa = PBXGroup;
 			children = (
+				D7E1471C1588E0CD00FE226A /* images */,
 				D7E1470D1588CE7E00FE226A /* AppDelegate.h */,
 				D7E1470E1588CE7E00FE226A /* AppDelegate.m */,
 				D7E147101588CE7E00FE226A /* RootViewController.h */,
@@ -758,6 +765,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		D7E1471C1588E0CD00FE226A /* images */ = {
+			isa = PBXGroup;
+			children = (
+				D7E1471D1588E0DE00FE226A /* Player.png */,
+				D7E1471E1588E0DE00FE226A /* Projectile.png */,
+				D7E1471F1588E0DE00FE226A /* Target.png */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -817,6 +834,9 @@
 				D7E145CA1588CE7B00FE226A /* Icon.png in Resources */,
 				D7E145CC1588CE7B00FE226A /* Icon@2x.png in Resources */,
 				D7E145CF1588CE7B00FE226A /* iTunesArtwork in Resources */,
+				D7E147201588E0DE00FE226A /* Player.png in Resources */,
+				D7E147211588E0DE00FE226A /* Projectile.png in Resources */,
+				D7E147221588E0DE00FE226A /* Target.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
