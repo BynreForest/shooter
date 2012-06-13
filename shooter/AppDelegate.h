@@ -10,6 +10,8 @@
 
 @class RootViewController;
 
+//root
+
 @interface AppDelegate : NSObject <UIApplicationDelegate> {
 	UIWindow			*window;
 	RootViewController	*viewController;

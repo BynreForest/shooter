@@ -15,6 +15,8 @@
 
 @implementation AppDelegate
 
+//root
+
 @synthesize window;
 
 - (void) removeStartupFlicker
