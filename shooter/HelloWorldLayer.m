@@ -42,10 +42,14 @@
         [self addChild:player];	
         
         [self schedule:@selector(gameLogic:) interval:1.0];
+        [self schedule:@selector(update:)];
         
         self.isTouchEnabled = YES;
         
-        }
+        _targets = [[NSMutableArray alloc] init];
+        _projectiles = [[NSMutableArray alloc] init];
+        
+    }
     
 	return self;
 }
@@ -57,6 +61,12 @@
 -(void)spriteMoveFinished:(id)sender {
     CCSprite *sprite = (CCSprite *)sender;
     [self removeChild:sprite cleanup:YES];
+    
+    if (sprite.tag == 1) { // target
+        [_targets removeObject:sprite];
+    } else if (sprite.tag == 2) { // projectile
+        [_projectiles removeObject:sprite];
+    }
 }
 
 -(void)addTarget {
@@ -89,7 +99,52 @@
                                              selector:@selector(spriteMoveFinished:)];
     [target runAction:[CCSequence actions:actionMove, actionMoveDone, nil]];
     
+    target.tag = 1;
+    [_targets addObject:target];
+    
 }
+
+- (void)update:(ccTime)dt {
+    
+    NSMutableArray *projectilesToDelete = [[NSMutableArray alloc] init];
+    for (CCSprite *projectile in _projectiles) {
+        CGRect projectileRect = CGRectMake(
+                                           projectile.position.x - (projectile.contentSize.width/2), 
+                                           projectile.position.y - (projectile.contentSize.height/2), 
+                                           projectile.contentSize.width, 
+                                           projectile.contentSize.height);
+        
+        NSMutableArray *targetsToDelete = [[NSMutableArray alloc] init];
+        for (CCSprite *target in _targets) {
+            CGRect targetRect = CGRectMake(
+                                           target.position.x - (target.contentSize.width/2), 
+                                           target.position.y - (target.contentSize.height/2), 
+                                           target.contentSize.width, 
+                                           target.contentSize.height);
+            
+            if (CGRectIntersectsRect(projectileRect, targetRect)) {
+                [targetsToDelete addObject:target];				
+            }						
+        }
+        
+        for (CCSprite *target in targetsToDelete) {
+            [_targets removeObject:target];
+            [self removeChild:target cleanup:YES];									
+        }
+        
+        if (targetsToDelete.count > 0) {
+            [projectilesToDelete addObject:projectile];
+        }
+        [targetsToDelete release];
+    }
+    
+    for (CCSprite *projectile in projectilesToDelete) {
+        [_projectiles removeObject:projectile];
+        [self removeChild:projectile cleanup:YES];
+    }
+    [projectilesToDelete release];
+}
+
 
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     
@@ -133,6 +188,9 @@
                            [CCCallFuncN actionWithTarget:self selector:@selector(spriteMoveFinished:)],
                            nil]];
     
+    projectile.tag = 2;
+    [_projectiles addObject:projectile];
+    
 }
 
 // on "dealloc" you need to release all your retained objects
@@ -141,6 +199,11 @@
 	// in case you have something to dealloc, do it in this method
 	// in this particular example nothing needs to be released.
 	// cocos2d will automatically release all the children (Label)
+    
+    [_targets release];
+    _targets = nil;
+    [_projectiles release];
+    _projectiles = nil;
 	
 	// don't forget to call "super dealloc"
 	[super dealloc];

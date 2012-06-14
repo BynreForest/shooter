@@ -13,7 +13,8 @@
 // HelloWorldLayer
 @interface HelloWorldLayer : CCLayerColor
 {
-    
+    NSMutableArray *_targets;
+    NSMutableArray *_projectiles;
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
